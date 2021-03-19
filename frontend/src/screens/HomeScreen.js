@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
-import { listProducts } from "../actions/productActions.js";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import { listProducts } from "../actions/productActions";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -16,10 +16,9 @@ const HomeScreen = () => {
     dispatch(listProducts());
   }, [dispatch]);
 
-  // const products = [];
   return (
     <>
-      <h1>Latest products</h1>
+      <h1>Latest Products</h1>
       {loading ? (
         <Loader />
       ) : error ? (
