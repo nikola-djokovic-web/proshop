@@ -9,9 +9,10 @@ import {
   Form,
   Button,
   Card,
+  Alert,
 } from "react-bootstrap";
 import Message from "../components/Message";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id;
@@ -30,11 +31,12 @@ const CartScreen = ({ match, location, history }) => {
     }
   }, [dispatch, productId, qty]);
 
-  const removeFromCartHandler = (id) => {
-    console.log("remove item from cart");
-  };
   const checkoutHandler = (id) => {
     history.push("/login?redirect=shipping");
+  };
+
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
   };
 
   return (
@@ -42,9 +44,9 @@ const CartScreen = ({ match, location, history }) => {
       <Col md={8}>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
-          <Message>
-            Cart empty <Link to="/">go back</Link>
-          </Message>
+          <Alert variant="info">
+            Cart is Empty <Link>Go Back</Link>
+          </Alert>
         ) : (
           <ListGroup variant="flush">
             {cartItems.map((item) => (
