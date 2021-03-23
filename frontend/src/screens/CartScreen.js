@@ -9,7 +9,6 @@ import {
   Form,
   Button,
   Card,
-  Alert,
 } from "react-bootstrap";
 import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../actions/cartActions";
@@ -44,9 +43,9 @@ const CartScreen = ({ match, location, history }) => {
       <Col md={8}>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
-          <Alert variant="info">
+          <Message variant="info">
             Cart is Empty <Link>Go Back</Link>
-          </Alert>
+          </Message>
         ) : (
           <ListGroup variant="flush">
             {cartItems.map((item) => (
